@@ -7,8 +7,11 @@ export default function Transfer({ setTxStatus }) {
   const [reciever, setReciever] = useState("");
   const [crypto, setCrypto] = useState("");
   const [amount, setAmount] = useState("");
+  const [isLoadingState, setIsLoadingState] = useState(false);
 
   const sendCrypto = async (crypto, reciever) => {
+    setIsLoadingState(true);
+
     let vaultRefType;
     let vaulStoragePath;
     let tokenRecieverCapPath;
@@ -58,6 +61,7 @@ export default function Transfer({ setTxStatus }) {
 
     console.log(txId);
     setTxStatus(await fcl.tx(txId).onceSealed());
+    setIsLoadingState(false);
   };
 
   return (
@@ -90,7 +94,11 @@ export default function Transfer({ setTxStatus }) {
         onChange={(e) => setReciever(e.target.value)}
         placeholder="0x0000000123456789"
       />
-      <Button onClick={() => sendCrypto(crypto, reciever)} bg="green.300">
+      <Button
+        onClick={() => sendCrypto(crypto, reciever)}
+        bg="green.300"
+        isLoading={isLoadingState}
+      >
         Send
       </Button>
     </Flex>
