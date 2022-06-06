@@ -17,7 +17,7 @@ export default function Transfer({ setTxStatus }) {
       case "FLOW":
         vaultRefType = "FlowToken.Vault";
         vaulStoragePath = "/storage/flowTokenVault";
-        tokenRecieverCapPath = "public/flowTokenReceiver";
+        tokenRecieverCapPath = "/public/flowTokenReceiver";
         break;
 
       case "BLT":
@@ -29,7 +29,7 @@ export default function Transfer({ setTxStatus }) {
       case "FUSD":
         vaultRefType = "FUSD.Vault";
         vaulStoragePath = "/storage/fusdVault";
-        tokenRecieverCapPath = "public/fusdReceiver";
+        tokenRecieverCapPath = "/public/fusdReceiver";
         break;
 
       case "tUSDT":
