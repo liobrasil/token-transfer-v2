@@ -48,20 +48,25 @@ export default function Transfer({ setTxStatus }) {
         break;
     }
 
-    let txId = await fcl.mutate({
-      cadence: SEND_CRYPTO.replace("vaultRefType", vaultRefType)
-        .replace("vaulStoragePath", vaulStoragePath)
-        .replace("tokenRecieverCapPath", tokenRecieverCapPath),
-      args: (arg, t) => [
-        arg(Number(amount).toFixed(8).toString(), t.UFix64),
-        arg(reciever, t.Address),
-      ],
-      limit: 9999,
-    });
+    let txId;
+    try {
+      txId = await fcl.mutate({
+        cadence: SEND_CRYPTO.replace("vaultRefType", vaultRefType)
+          .replace("vaulStoragePath", vaulStoragePath)
+          .replace("tokenRecieverCapPath", tokenRecieverCapPath),
+        args: (arg, t) => [
+          arg(Number(amount).toFixed(8).toString(), t.UFix64),
+          arg(reciever, t.Address),
+        ],
+        limit: 9999,
+      });
 
-    console.log(txId);
-    setTxStatus(await fcl.tx(txId).onceSealed());
-    setIsLoadingState(false);
+      console.log(txId);
+      setTxStatus(await fcl.tx(txId).onceSealed());
+      setIsLoadingState(false);
+    } catch (error) {
+      console.log("--------- Error", error);
+    }
   };
 
   return (
