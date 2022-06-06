@@ -16,7 +16,7 @@ export default function Transfer({ setTxStatus }) {
     switch (crypto) {
       case "FLOW":
         vaultRefType = "FlowToken.Vault";
-        vaulStoragePath = "storage/flowTokenVault";
+        vaulStoragePath = "/storage/flowTokenVault";
         tokenRecieverCapPath = "public/flowTokenReceiver";
         break;
 
@@ -28,7 +28,7 @@ export default function Transfer({ setTxStatus }) {
 
       case "FUSD":
         vaultRefType = "FUSD.Vault";
-        vaulStoragePath = "storage/fusdVault";
+        vaulStoragePath = "/storage/fusdVault";
         tokenRecieverCapPath = "public/fusdReceiver";
         break;
 
