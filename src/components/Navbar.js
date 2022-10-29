@@ -14,6 +14,7 @@ export default function Navbar({ user, setNetwork }) {
             onChange={(e) => {
               setNetwork(e.target.value);
               fcl.unauthenticate();
+              console.log(user);
             }}
             defaultValue="testnet"
             placeholder="Choose network"
